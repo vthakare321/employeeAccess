@@ -19,13 +19,21 @@ export const userService = {
     apiSkip ??
     (params.page - 1) * params.limit;
 
+    const endpoint = params.search
+    ? API_ENDPOINTS.users.search
+    : API_ENDPOINTS.users.list;
+
+
   const response =
     await apiClient.get<UsersResponseDto>(
-      API_ENDPOINTS.users.list,
+      endpoint,
       {
         params: {
+          q: params.search,
           limit: apiLimit,
           skip,
+          sortBy: params.sortBy,
+          order: params.order,
         },
       },
     );

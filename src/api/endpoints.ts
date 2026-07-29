@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
     create: "/users/add",
     update: (id: number) => `/users/${id}`,
     delete: (id: number) => `/users/${id}`,
+    search: "/users/search",
    
   },
 } as const;

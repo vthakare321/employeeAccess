@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/routes/route.config";
 
+
 import { Button } from "@/shared/components/Button/Button";
 import { EmptyState } from "@/shared/components/EmptyState/EmptyState";
 import { ErrorMessage } from "@/shared/components/ErrorMessage/ErrorMessage";
@@ -12,11 +13,12 @@ import { Pagination } from "@/shared/components/Pagination/Pagination";
 import { UserTable } from "../components/UserTable";
 import { useUserFilters } from "../hooks/useUserFilters";
 import { useUsers } from "../hooks/useUsers";
+import { UserSort } from "../components/UserSort";
 
 export const UsersPage = () => {
   const navigate = useNavigate();
 
-  const { filters, setPage } =
+  const { filters, setPage, setSorting} =
     useUserFilters();
 
  
@@ -37,6 +39,7 @@ const { data, isLoading, isError } =
   if (!data || data.users.length === 0) {
     return (
       <Page title="Users">
+        
         <EmptyState
           title="No users found"
           description="There are no users available."
@@ -53,6 +56,11 @@ const totalPages = Math.ceil(
 
   return (
     <Page title="Users">
+      <UserSort
+  sortBy={filters.sortBy ?? "firstName"}
+  order={filters.order ?? "asc"}
+  onChange={setSorting}
+/>
       <div className="mb-6 flex justify-end">
         <Button
           onClick={() =>
@@ -62,6 +70,9 @@ const totalPages = Math.ceil(
           Create User
         </Button>
       </div>
+
+
+
 
       <UserTable users={data.users} />
 
