@@ -1,5 +1,6 @@
 import { apiClient } from "@/api/client";
 import { API_ENDPOINTS } from "@/api/endpoints";
+import  type { UserQueryParams } from "../types/userQueryParams";
 
 import type {
   UserDto,
@@ -9,15 +10,28 @@ import type {
 import type { UserFormValues } from "../schemas/user.schema";
 
 export const userService = {
-  async getUsers() {
-    const response =
-      await apiClient.get<UsersResponseDto>(
-        API_ENDPOINTS.users.list,
-      );
+  async getUsers(
+  params: UserQueryParams,
+  apiLimit: number = params.limit,
+  apiSkip?: number,
+) {
+  const skip =
+    apiSkip ??
+    (params.page - 1) * params.limit;
 
-    return response.data;
-  },
+  const response =
+    await apiClient.get<UsersResponseDto>(
+      API_ENDPOINTS.users.list,
+      {
+        params: {
+          limit: apiLimit,
+          skip,
+        },
+      },
+    );
 
+  return response.data;
+},
   async getUserById(id: number) {
     const response =
       await apiClient.get<UserDto>(
@@ -48,5 +62,7 @@ export const userService = {
 
   return response.data;
 },
+
+ 
 };
 
