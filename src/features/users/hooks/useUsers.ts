@@ -15,9 +15,9 @@ export const useUsers = (
   ...QUERY_KEYS.users.all,
   params.page,
   params.limit,
-  params.search,
   params.sortBy,
   params.order,
+ 
 ],
 
     queryFn: async () => {

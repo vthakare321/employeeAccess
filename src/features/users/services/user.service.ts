@@ -19,9 +19,8 @@ export const userService = {
     apiSkip ??
     (params.page - 1) * params.limit;
 
-    const endpoint = params.search
-    ? API_ENDPOINTS.users.search
-    : API_ENDPOINTS.users.list;
+   const endpoint = API_ENDPOINTS.users.list;
+ 
 
 
   const response =
@@ -29,7 +28,7 @@ export const userService = {
       endpoint,
       {
         params: {
-          q: params.search,
+         
           limit: apiLimit,
           skip,
           sortBy: params.sortBy,
