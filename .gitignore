@@ -12,6 +12,9 @@ build/
 .env.production
 .env.test
 
+
+eslint.config.js
+
 # Logs
 logs
 *.log
