@@ -1,7 +1,7 @@
 import { LoginPage } from "@/features/auth/pages/LoginPage";
 import { ForbiddenPage, NotFoundPage } from "@/features/errors/pages";
 import { UsersPage } from "@/features/users/pages/UsersPage";
-// import { SettingsPage } from "@/features/settings/pages/SettingsPage";
+import { SettingsPage } from "@/features/settings/pages/SettingsPage";
 
 import type { AppRoute } from "./route.types";
 
@@ -33,14 +33,14 @@ export const appRoutes: AppRoute[] = [
     showInSidebar: true,
   },
 
-  // {
-  //   path: ROUTES.SETTINGS,
-  //   title: "Settings",
-  //   component: SettingsPage,
-  //   requiresAuth: true,
-  //   permissions: ["settings:view"],
-  //   showInSidebar: true,
-  // },
+  {
+    path: ROUTES.SETTINGS,
+    title: "Settings",
+    component: SettingsPage,
+    requiresAuth: true,
+    permissions: ["settings:view"],
+    showInSidebar: true,
+  },
 
   {
     path: ROUTES.FORBIDDEN,

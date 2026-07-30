@@ -14,7 +14,7 @@ export const useUser = (id: number) => {
     queryKey: QUERY_KEYS.users.detail(id),
 
     queryFn: async () => {
-      // If it's a locally created user, get it from localStorage
+     
       if (isLocalUser(id)) {
         const localUser = getLocalUserById(id);
 

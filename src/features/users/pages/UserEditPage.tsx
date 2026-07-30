@@ -77,23 +77,18 @@ if (!canEditUser) {
     );
   }
 
-//   if (!canEditUser) {
-//   return (
-//     <Navigate
-//       to={ROUTES.FORBIDDEN}
-//       replace
-//     />
-//   );
-// }
+
 
   return (
-    <Page title="Edit User">
+   <Page title="Edit User">
+    <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8">
       <UserForm
         defaultValues={data}
         onSubmit={handleSubmit}
         submitLabel="Update User"
         isSubmitting={isPending}
       />
-    </Page>
+    </div>
+  </Page>
   );
 };

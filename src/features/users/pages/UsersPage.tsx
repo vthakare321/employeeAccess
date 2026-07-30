@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/routes/route.config";
-import { useEffect } from "react";
+
 
 import { Button } from "@/shared/components/Button/Button";
 import { EmptyState } from "@/shared/components/EmptyState/EmptyState";
@@ -17,16 +17,7 @@ import { UserSort } from "../components/UserSort";
 
 
 export const UsersPage = () => {
-  useEffect(() => {
-    console.log("UsersPage Mounted");
-
-    return () => {
-      console.log("UsersPage Unmounted");
-    };
-  }, []);
-
-  console.log("UsersPage Render");
-
+  
   const navigate = useNavigate();
 
   const { filters, setPage, setSorting,} =
@@ -68,14 +59,13 @@ const totalPages = Math.ceil(
   return (
     <Page title="Users">
 
-     
-
-     
+     <div className="mb-4">
       <UserSort
   sortBy={filters.sortBy ?? "firstName"}
   order={filters.order ?? "asc"}
   onChange={setSorting}
 />
+   </div>
       <div className="mb-6 flex justify-end">
         <Button
           onClick={() =>
@@ -87,15 +77,19 @@ const totalPages = Math.ceil(
       </div>
 
 
+<div className="overflow-x-auto">
+  <UserTable users={data.users} />
+</div>
 
-
-      <UserTable users={data.users} />
-
-      <Pagination
+      
+<div className="mt-6 flex justify-center sm:justify-end">
+  <Pagination
   currentPage={filters.page}
   totalPages={totalPages}
   onPageChange={setPage}
-/>;
+/>
+</div>
+     
     </Page>
   );
 };

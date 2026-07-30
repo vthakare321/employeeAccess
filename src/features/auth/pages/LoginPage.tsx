@@ -49,44 +49,45 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow">
-        <h1 className="mb-6 text-center text-2xl font-bold">
-          Sign In
-        </h1>
+  <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4 py-6 sm:px-6 lg:px-8">
+    <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-md sm:p-8">
+      <h1 className="mb-6 text-center text-2xl font-bold sm:text-3xl">
+        Sign In
+      </h1>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4"
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
+        <Input
+          label="Username"
+          {...register("username")}
+          error={errors.username?.message}
+        />
+
+        <Input
+          label="Password"
+          type="password"
+          {...register("password")}
+          error={errors.password?.message}
+        />
+
+        {errors.root && (
+          <p className="text-sm text-red-600">
+            {errors.root.message}
+          </p>
+        )}
+
+        <Button
+          type="submit"
+          fullWidth
+          loading={isSubmitting}
         >
-          <Input
-            label="Username"
-            {...register("username")}
-            error={errors.username?.message}
-          />
-
-          <Input
-            label="Password"
-            type="password"
-            {...register("password")}
-            error={errors.password?.message}
-          />
-
-          {errors.root && (
-            <p className="text-sm text-red-600">
-              {errors.root.message}
-            </p>
-          )}
-
-          <Button
-            type="submit"
-            fullWidth
-            loading={isSubmitting}
-          >
-            Sign In
-          </Button>
-        </form>
-      </div>
+          Sign In
+        </Button>
+      </form>
     </div>
-  );
+  </div>
+);
+
 };
